@@ -143,3 +143,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'userUploads')
 MEDIA_URL = '/userUploads/'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'centralapp:mainpage'
+
+from decouple import config
+
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+DATABASES = {
+    'default': config('DATABASE_URL', cast=db_url)
+}
+

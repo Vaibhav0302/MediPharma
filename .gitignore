@@ -9,3 +9,5 @@ media/
 
 # If you use virtualenv
 venv/venv
+# Environments
+.env
