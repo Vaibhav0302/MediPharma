@@ -1,0 +1,237 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Pacifico" />
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Cinzel" />
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Oswald"/>
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Grandstander"/>
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Ubuntu"/>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/032a738741.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="{% static 'centralapp/css_files/style.css' %}">
+	<link rel="stylesheet" href="{% static 'centralapp/css_files/static_style.css' %}">
+	<link rel="icon" type="image/png" href="{% static 'centralapp/Images/icon.png' %}"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="{% static 'centralapp/js/app.js' %}"></script>
+    <!-- <script type="text/javascript" src="js/mdb.min.js"></script> -->
+    <!--<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>-->
+	<title>MediPharama</title>
+</head>
+<body style="background: #f7f7ee">
+	<script>
+       AOS.init();
+	   $(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+	<div id="startOfPage"></div>
+	<nav class="navbar navbar-expand-lg navbar-light nav-bg" id="navstyle" >
+		<a class="navbar-brand" href="{% url 'centralapp:mainpage' %}" style="font-family: Cinzel; font-size: 40px !important; color: white;" >
+			<img src="{% static 'centralapp/Images/icon.png' %}" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
+			MediPharama
+		</a>
+
+
+
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size:20px; ">
+			<ul class="navbar-nav ml-auto">
+				<!-- <li class="nav-item active">
+					<a class="nav-link" href="#" style="color: rgb(0, 0, 0)"> Sign In </a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="#" style="color: rgb(0, 0, 0)"> Sign Up </a> -->
+					{% with 'login' as list%}
+					
+					{% if request.resolver_match.url_name not in list.split %}
+					{% if user.is_authenticated %}
+					<li class="nav-item dropdown">
+						<a class="nav-link" style="background:#3a8684;color:white;border-radius: 8px;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+							Hey {{request.user.username }}
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item nav-link" href="" style="color: rgb(0, 0, 0)"> My Profile </a>
+							<a class="dropdown-item nav-link" href="{% url 'centralapp:logout' %}" style="color: rgb(0, 0, 0)"> Logout </a>
+						</div>
+					</li>
+					{% else %}
+					<li class="nav-item dropdown">
+						<a class="nav-link mx-2" style="background:#3a8684;color:white;border-radius: 8px;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+							Sign Up
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{% url 'patient:patientRegister' %}">Patient</a>
+							<a class="dropdown-item" href="{% url 'doctor:doctorRegister' %}">Doctors</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link mx-2" style="background:#3a8684;color:white;border-radius: 8px;" href="{% url 'centralapp:login' %}">Login</a>
+					</li>
+					{% endif %}
+					{% endif %}
+					{%endwith%}
+				</li>
+			</ul>
+		</div>
+
+
+	</nav>
+	
+	<!-- <button id="scrollDown" onclick="topFunction()"><i class="fas fa-chevron-down"></i></button> -->
+	<a href="#startOfPage" data-toggle="tooltip" data-placement="left" title="Scroll Up" id="scrollUp"><span><i
+				class="fas fa-chevron-up"></i></span></a>
+	<a href="#endOfPage" data-toggle="tooltip" data-placement="left" title="Scroll Down" id="scrollDown"><span><i
+				class="fas fa-chevron-down"></i></span></a>
+
+  {% block body %}
+
+  {% endblock %}
+	{% with 'create_patientprofile patientvitals_input patientRegister login' as list%}
+	
+		{% if request.resolver_match.url_name not in list.split %}
+			<div class="col-sm-3 sidebar">
+				<ul class="list-group ">
+					<li class="list-group-item  heads">For You And Your Family</li>
+					<ul class="list-group">
+						<a class='list-group-item list-group-item-action {% if request.resolver_match.url_name == "Inside_health_records" %}active{% endif %} ' href="{% url 'centralapp:Inside_health_records' %}">What's in my health record </a>
+						<a class='list-group-item list-group-item-action {% if request.resolver_match.url_name == "patients_how_to_use" %}active{% endif %} ' href="{% url 'centralapp:patients_how_to_use' %}">How to use my health record </a>
+					</ul>
+					<li class="list-group-item  heads">For HealthCare Professionals</li>
+					<ul class="list-group">
+						<a class='list-group-item list-group-item-action {% if request.resolver_match.url_name == "doc_how_to_use" %}active{% endif %} ' href="{% url 'centralapp:doc_how_to_use' %}">Maintaining health records </a>
+					</ul>
+					<li class="list-group-item  heads">Know more about diseases</li>
+					<ul class="list-group">
+						<a class='list-group-item list-group-item-action {% if request.resolver_match.url_name == "Aids" %}active{% endif %} ' href="{% url 'centralapp:Aids' %}">AIDS</a>
+						<a class='list-group-item list-group-item-action {% if request.resolver_match.url_name == "Cancer" %}active{% endif %} ' href="{% url 'centralapp:Cancer' %}">Cancer</a>
+						<a class='list-group-item list-group-item-action {% if request.resolver_match.url_name == "Heart_disorder" %}active{% endif %} ' href="{% url 'centralapp:Heart_disorder' %}">Heart Disorders</a>
+						<a class='list-group-item list-group-item-action {% if request.resolver_match.url_name == "Hypertension" %}active{% endif %} ' href="{% url 'centralapp:Hypertension' %}">Hypertension</a>
+						<a class='list-group-item list-group-item-action {% if request.resolver_match.url_name == "Diabetes" %}active{% endif %} ' href="{% url 'centralapp:Diabetes' %}">Diabetes</a>
+					</ul>
+					<!-- <a class='list-group-item list-group-item-action heads {% if request.resolver_match.url_name == "About_us" %}active{% endif %} ' href="{% url 'centralapp:About_us' %}">About Us</a> -->
+					<a class='list-group-item list-group-item-action heads {% if request.resolver_match.url_name == "FAQS" %}active{% endif %} ' href="{% url 'centralapp:FAQS' %}">FAQs</a>
+					<a class='list-group-item list-group-item-action heads {% if request.resolver_match.url_name == "Covid_19" %}active{% endif %} ' href="{% url 'centralapp:Covid_19' %}">Covid-19 Checkpoints</a>
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% endif%}
+	{%endwith%}
+
+	<!-- Footer -->
+	<div id="endOfPage" >
+
+	</div>
+	<footer class="page-footer footer font-small mdb-color" style="background:linear-gradient(90deg, #24a19c,#cedebd);">
+
+		<!-- Footer Links -->
+
+
+			<!-- Footer links -->
+			<div class="row text-center ml-5 text-md-left mt-3">
+
+				<!-- Grid column -->
+				<hr class="w-100 clearfix d-md-none">
+				<div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 footer-style">
+					<h6 class="text-uppercase mb-2 " >Know-hows</h6>
+					<p>
+						<a href="{% url 'centralapp:Inside_health_records' %}" class="useful_links">What's in my health record</a><br>
+						<a href="{% url 'centralapp:patients_how_to_use' %}" class="useful_links">How to use my health record</a><br>
+						<a href="{% url 'centralapp:doc_how_to_use' %}" class="useful_links">How to use the health record (for doctors)</a><br>
+						<a href="{% url 'centralapp:FAQS' %}" class="useful_links">FAQs</a><br>
+					</p>
+				</div>
+				<!-- Grid column -->
+				<div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 footer-style">
+					<h6 class="text-uppercase mb-2 font-weight-bold" > Other useful links</h6>
+					<div class="no-bullet-list two-column-list">
+						<a href="{% url 'centralapp:Covid_19' %}" class="useful_links">Covid-19 checkpoints</a><br>
+
+						<h6 class="mt-2 font-weight-bold">Learn about diseases</h6>
+
+						<ul>
+						<li><a href="{% url 'centralapp:Cancer' %}" class="useful_links">Cancer</a><br></li>
+						<li><a href="{% url 'centralapp:Aids' %}" class="useful_links">AIDS</a><br></li>
+						<li><a href="{% url 'centralapp:Diabetes' %}" class="useful_links">Diabetes</a><br></li>
+						<li><a href="{% url 'centralapp:Heart_disorder' %}" class="useful_links">Heart Disorders</a><br></li>
+						<li><a href="{% url 'centralapp:Hypertension' %}" class="useful_links">Hypertension</a><br></li>
+
+						</ul>
+						</div>
+
+				</div>
+				<!-- Grid column -->
+
+				<hr class="w-100 clearfix d-md-none">
+
+				<!-- Grid column -->
+
+				<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 no-bullet-list footer-style">
+					<h6 class="text-uppercase mb-2 font-weight-bold">Our Team</h6>
+					<ul>
+						<li>Vaibhav Deshmukh<br></li>
+						<li>Anand Joshi<br></li>
+						<li>Sammer Kapse<br></li>
+						<li>Shreyas Lathkar<br></li>
+						</ul>
+				</div>
+				<!-- Grid column -->
+				<hr class="w-100 clearfix d-md-none ">
+
+				<!-- Grid column -->
+				<div class="col-md-3 col-lg-3 col-xl-3 mr-5 mt-3 footer-style">
+					<h6 class="text-uppercase mb-2 font-weight-bold ">Contact</h6>
+                    <p>
+                        <i class="fa fa-home mr-3"></i>Pune, India
+                    </p>
+                    <p>
+                        <i class="fa fa-envelope mr-3 "></i> medipharama12@gmail.com
+                    </p>
+                    <p>
+                        <i class="fa fa-phone mr-3"></i> +91 8789876787
+                    </p>
+
+				</div>
+				<!-- Grid column -->
+
+			</div>
+			<!-- Footer links -->
+
+			<hr>
+
+			<!-- Grid row -->
+			<div class="row d-flex align-items-center footer-style">
+				<!-- Grid column -->
+				<div class="col-md-11 col-lg-11">
+					<!--Copyright-->
+					<p class="text-center">© 2023 Copyright:
+						<strong> MediPharama</strong>
+					</p>
+				</div>
+			</div>
+			<!-- Grid row -->
+
+
+		<!-- Footer Links -->
+	</footer>
+
+</body>
+</html>

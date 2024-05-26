@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    
+<div>
+
+  <table>
+   <thead>
+
+    <tr>
+      <th>Patient Name</th>
+      <th>Phone Number</th>
+    </tr>
+   </thead>
+   <tbody>
+    {% for item in patientl %}
+     <tr>
+       <td> {{item.name}} </td> 
+       <td>{{item.phone}}</td>
+       <td>{{item.id}}</td>
+       <td><button><a href="{% url 'doctor:pat_profile' p=item.id %}">View Patient Profile</a></button></td>
+     </tr>
+  
+     <!-- {{item.patient}} -->
+    
+    {% endfor %}   </tbody>
+
+
+  </table>
+</div>
+
+  </body>
+</html>

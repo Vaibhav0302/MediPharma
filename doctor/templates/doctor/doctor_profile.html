@@ -1,0 +1,272 @@
+{% extends 'doctor/base.html' %}
+{% load static %}
+{% block doctorbase %}
+
+<!-- <div class="tabcontent" id="myProfile">
+
+  <div class="container" id="main-content">
+
+    <h1 style="font-family:'Ubuntu';font-size: 3rem;text-align: center; color: rgb(92, 46, 13); ">My Profile </h1>
+    <div class="container">
+      <button class="edit-option-buttons" style="font-size: 18px; float: right;">
+        <a href="#"> Edit your profile </a>
+      </button>
+    </div>
+    <div style="display: flex;justify-content: center;">
+      <div class="row my-4 profile-box-info justify-content-around" style="width: fit-content">
+        <div class="col-sm-2 p-2 col-lg-2 p-2" style="margin-right: 40px;">
+          <img src="{% static 'doctor/Images/doctor_profile.jpg'%}" max-width="80%" alt="">
+        </div>
+        <div class="col-sm-6 col-lg-6 p-2 " style="margin-left: 50px;">
+          <div class="profile-content">
+            <h3>General Info</h3>
+            <b>Name:</b> Dr. Randeep Guleria <br>
+            <b>Username:</b> whatever <br>
+            <b>Email Address:</b> xyz@gmail.com
+          </div>
+          <button class="edit-option-buttons" style="margin-top: 30px;">Edit Profile Picture</button>
+        </div>
+      </div>
+    </div>
+    <div class="row my-10">
+      <div class="col-sm-5 col-lg-5 p-2 ml-auto mr-auto">
+        <div class="profile-box-info">
+          <div class="profile-content">
+            <h3>Educational Qualifications</h3>
+            <p>
+              <b>Graduation College: </b> AIIMS Delhi <br>
+              <b>Specialisation:</b> XYZ <br>
+              <b>Super Specialisation:</b> ABC <br>
+
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 p-2 col-lg-5 ml-auto mr-auto">
+        <div class="profile-box-info ">
+          <div class="profile-content">
+            <h3>Experience</h3>
+            <p>
+              Apollo, Sarita Vihar<br>
+              Max Super Speciality hospital, Vaishali<br>
+              Some other hospital<br>
+              And some other
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row my-4">
+      <div class="col-sm-5 p-2 col-lg-5 ml-auto mr-auto">
+        <div class="profile-box-info ">
+          <div class="profile-content">
+            <h3>Availability</h3>
+            <p>
+              <b>XYZ clinic: </b> 7-8pm Sundays <br>
+              <b>ABC hospital:</b> 11am-12pm Wed Fri <br>
+              <b>PQR hospital:</b> 4-5pm Mon Thurs <br>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5 p-2 col-lg-5 ml-auto mr-auto">
+        <div class="profile-box-info ">
+          <div class="profile-content">
+            <h3>Speciality</h3>
+            <p>
+              If the doctor is a surgeon, then he could mention what kind of surgeries he specialises in.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<div class="container">
+
+  <h1 style="font-family:'Ubuntu';font-size: 3rem;text-align: center; color: rgb(92, 46, 13); ">My Profile </h1>
+  
+    <button class="edit-option-buttons" style="font-size: 18px; float: right;">
+      <a href="{% url 'doctor:editdoctorprofile' %}"> Edit your profile </a>
+    </button>
+</div>
+    <div class="container"  id="main-content" style=" width: 100%; margin-left: 170px;">
+  <div class="row my-5">
+    <div class="col-3 text-center" style=" background-color:#f5f1da;">
+      <img class="profile-photo" src="{{ profile.Profile_pic.url }}" alt="">
+      <div class="row my-3 align-items-center">
+        <div class="col-6">
+          <div class="profile-field">
+            <b>NAME:</b>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="profile-content">
+            {{profile.name }}
+          </div>
+        </div>
+      </div>
+      <div class="row my-3 align-items-center">
+        <div class="col-6">
+          <div class="profile-content">
+            <b>PHONE:</b>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="profile-content">
+            {{profile.phone}}
+          </div>
+        </div>
+      </div>
+      <div class="row my-3 align-items-center">
+        <div class="col-6">
+          <div class="profile-content">
+            <b>GENDER: </b>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="profile-content">
+            {{profile.Gender}}
+          </div>
+        </div>
+      </div>
+     
+    </div>
+    <div class="col-4 text-center" style="background-color:#f5f1da;">
+      <div class="row my-3 align-items-center">
+        <div class="col-6">
+          <div class="profile-content">
+            <b>SPECIALISATION:</b>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="profile-content">
+            {{profile.Specialisation}}
+          </div>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-lg-6 profile-content">
+          <b>CITY: </b>
+        </div>
+        <div class="col-lg-6 profile-content">
+          {{profile.City}}
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-lg-6 profile-content">
+          <b>REG. NUMBER:</b>
+        </div>
+        <div class="col-lg-6 profile-content">
+          {{profile.Registration_Number}}
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-lg-6 profile-content">
+          <b>REG. COUNCIL</b>
+        </div>
+        <div class="col-lg-6 profile-content">
+          {{profile.Registration_Council}}
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-lg-6 profile-content">
+          <b>REG. YEAR:</b>
+        </div>
+        <div class="col-lg-6 profile-content">
+          {{profile.Registration_year}}
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-lg-6 profile-content">
+          <b>DEGREE:</b>
+        </div>
+        <div class="col-lg-6 profile-content">
+          {{profile.Degree}}
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-5 text-center" style="background-color:#f5f1da;" >
+      
+      <div class="row my-3">
+        <div class="col-lg-6 profile-content">
+          <b>COLLEGE: </b>
+        </div>
+        <div class="col-lg-6 profile-content">
+          {{profile.College}}
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-lg-6 profile-content">
+          <b>YEAR OF COMPLETION</b>
+        </div>
+        <div class="col-lg-6 profile-content">
+        {{profile.Year_of_completion}}
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-lg-6 profile-content">
+          <b>MEDICAL REG. PROOF</b>
+        </div>
+        <div class="col-lg-6 profile-content">
+          <div class="container">
+            <button class="edit-option-buttons" style="font-size: 18px; float: right;">
+              <a href="#"> Preview </a>
+            </button>
+          </div>
+          {{profile.Medical_registration_proof}}
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-lg-6 profile-content">
+          <b>CURRENT PLACE OF WORK:</b>
+        </div>
+        <div class="col-lg-6 profile-content">
+          {{profile.Current_place_of_work}}
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-lg-6 profile-content">
+          <b>AADHAR NUMBER:</b>
+        </div>
+        <div class="col-lg-6 profile-content">
+          {{profile.Aadhar_Number}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- name :     {{profile.name}}<br>
+phone :     {{profile.phone}}<br>
+Specialisation :     {{profile.Specialisation}}<br>
+City :     {{profile.City}}<br>
+Registration_Number :     {{profile.Registration_Number}}<br>
+Registration_Council :     {{profile.Registration_Council}}<br>
+Registration_year :     {{profile.Registration_year}}<br>
+Degree :     {{profile.Degree}}<br>
+College  :     {{profile.College}}<br>
+Year_of_completion :     {{profile.Year_of_completion}}<br>
+Medical_registration_proof :     {{profile.Medical_registration_proof}}<br>
+Gender :     {{profile.Gender}}<br>
+Current_place_of_work :     {{profile.Current_place_of_work}}<br>
+Profile_pic :     {{profile.Profile_pic}}<br>
+Aadhar_Number :     {{profile.Aadhar_Number}}<br> -->
+
+
+
+
+
+
+
+{% endblock %}

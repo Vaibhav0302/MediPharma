@@ -1,0 +1,72 @@
+{% extends 'doctor/base.html' %}
+{% block doctorbase %}
+{% load static %}
+  
+
+<div class="container py-4" id="main-content" >
+    <div class="card mx-auto ">
+        <div class="card-body" >
+
+            <h1 style="font-family: Itim,cursive; text-align: center;" class="mb-3 mx-auto">Add a New Record</h1>
+
+                <form class="" action="{% url 'doctor:addReport'%}" method="POST">
+                {% csrf_token %}
+                
+				<input type="hidden" id="" name="docid" value={{details.docid}}>
+				<input type="hidden" id="" name="patid" value={{details.patid}}>
+				<input type="hidden" id="" name="doctor_name" value={{details.doctor_name}}>
+				
+				<p style="font-size: 25px;"><span><b>Doctor Name: </b>{{details.doctor_name}}</span><span style="float: right;"><b>Date: </b>{{details.date}}</span></p>
+				
+				<!-- symptoms -->
+                <div class="form-group row">
+                    <div class="col-sm my-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control"  placeholder="Symptoms" name="symptoms">
+                        </div>
+                    </div>
+				</div>
+				
+				<!-- diagnosis -->
+                <div class="form-group row">
+                    <div class="col-sm my-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control"  placeholder="Diagnosis" name="diagnosis">
+                        </div>
+                    </div>
+				</div>
+				
+				<!-- medication -->
+                <div class="form-group row">
+                    <div class="col-sm mt-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control"  placeholder="Medication" name="medication">
+                        </div>
+                        <small class="text-muted form-text">Medicines for treatment. Format: Medicine Name 1 / Dosage 1/ For action 1 : Medicine Name 2 / Dosage 2/ For action 2</small>
+                    </div>
+				</div>
+				
+				<!-- additional_precautions -->
+                <div class="form-group row">
+                    <div class="col-sm mb-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control"  placeholder="Additional Precautions" name="additional_precautions">
+						</div>
+						<small class="text-muted form-text">Additional Precautions to be taken by the Patient.</small>
+                    </div>
+                </div>
+
+                <button class="btn btn-success" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+	<form   action="{% url 'doctor:addReport'%}" method="POST">
+		{% csrf_token %}
+		
+
+  
+{% endblock %}

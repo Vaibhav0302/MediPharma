@@ -1,0 +1,42 @@
+{% extends 'centralapp/base.html' %}
+{% load static %}
+{% block body %}
+<!-- <div class="parallax"></div> -->
+<div class = "about_us_headline" data-aos="fade-up" data-aos-duration="2000">
+	<h1 class="display">About MediPharama</h1>
+	<p class="p_display">Providing a hassle-free environment to manage your health records.<br><br> We at MediPharama believe that maintaining health records should be as simple as clicking a button<br></p>
+	<p class="p_display" style="font-size:1.5em; color: #30475e;font-weight: bold;">MediPharama lets you control your health information securely, in one place.</p>
+</div>
+<div class="container-fluid">
+<div class="main_container row" data-aos="fade-down" data-aos-duration="1500">
+	
+	<div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000">
+		<img class="bhu_image" src="{% static 'centralapp/Images/bhu.jpeg' %}">
+	</div>
+	<div class="col-lg-7 paragraph" data-aos="fade-right" data-aos-duration="1000">
+	 We aim to provide a very user friendly platform to manage one's medical records.<br>
+	</div>	
+</div>
+<div style="text-align: center;">
+	<h1 class="display" data-aos="fade-down" data-aos-duration="1000">Our Team</h1>
+	<div class="team" data-aos="fade-down" data-aos-duration="1200">
+		<h2> The Frontend Team</h2>
+		<ul>
+			<li><a href="#"> Student1 </a></li>
+			<li><a href="#"> Student1 </a></li>
+		</ul>
+	</div>
+	
+	<div class="team" data-aos="fade-down" data-aos-duration="1200">
+		<h2> The Backend Team</h2>
+		<ul>
+			<li><a href="#"> Student1</a></li>
+			<li><a href="#"> Student1 </a></li>
+		</ul>
+	</div>
+	
+	
+</div>
+</div>
+<div class="parallax"></div>
+{% endblock %}

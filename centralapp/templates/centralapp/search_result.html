@@ -1,0 +1,31 @@
+{% extends 'centralapp/base.html' %}
+{% block body %}
+{% load static %}
+
+<div class="container-fluid">
+    <div class="row my-4">
+        <div class="col-sm-8 p-2 ml-auto" >
+
+        <h1 style="text-align:center;">{{disease.name}}</h1>
+        <br>
+
+        <div class="section-divs">
+            <h3>About the disease</h3>
+            {{disease.about}}<br><br>
+        </div>
+            
+        <br>
+
+        <div class="section-divs">   
+            <h3>Symptoms</h3>
+            {{disease.symptoms}}<br><br>
+        </div>
+        <br>
+        <div class="section-divs">
+            <h3>Treatment</h3>
+            {{disease.treatment}}<br><br>
+        </div>
+        <br>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'patient/base.html' %}
+{% load static %}
+{% block patient_base %}
+
+<div class="container" id="main-content" style="margin-left: 170px; min-height: 97vh;">
+  
+    <h1 style="font-family:'Ubuntu';font-size: 3rem;text-align: center; color: rgb(92, 46, 13); ">Medications</h1>
+    <div class="row my-4" >
+        <div class="col" >
+            <div style=" margin:auto; padding: 30px 20px; border-radius: 10px; border: solid 4px #838383; 
+            background-color: #f5f1da; box-shadow:  1em 1em 1.75em -1.5em rgba(0,0,0,0.75);">
+            {% for report in Reports %}
+
+                <div class="prescription" style="background: #fff7c8 ;padding: 1em;">
+                    <p style="font-size: x-large;"><span><b>Doctor: </b> {{ report.doctor_name }}</span>
+                    <span style="float: right;"><b>Date: </b>{{ report.date }}</span></p>
+
+                    <p><b>Symptoms: </b>{{ report.Symptoms }}</p>
+                    <p><b>Diagnosis: </b>{{ report.diagnosis }}</p>
+                    <table class="table table-bordered table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Medicine</th>
+                                <th>Dosage</th>
+                                <th>For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for med in report.medication %}
+                                <tr>
+                                    {% for each in med %}
+                                        <td>{{ each }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <p><strong>Additional Precautions:</strong> {{ report.additional_precautions }}</p>
+
+                </div>
+                <hr>
+                <h3>Medicine Information</h3>
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Medicine Name</th>
+                            <th>Medical Name</th>
+                            <th>Address</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                   <tbody>
+    {% for med in report.medication %}
+        <tr>
+            <td>{{ med.0 }}</td>
+            <td>
+                {% for _ in '1234' %}
+                    {% with index=med_name|random %}
+                        {{ index }}
+                    {% endwith %}
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for _ in '1234' %}
+                    {% with index=med_addr|random %}
+                        {{ index }}
+                    {% endwith %}
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td>{{ med_price|random }}</td>  {# Display a random price from the list #}
+            <td>{{ med_qyt|random }}</td>
+        </tr>
+    {% endfor %}
+</tbody>
+
+
+                </table>
+
+                {% empty %}
+                <div style="margin: auto;">
+                    <p style="font-size: 24px;">
+                        <b> NO MEDICAL HISTORY !!</b>
+                    </p>
+
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
